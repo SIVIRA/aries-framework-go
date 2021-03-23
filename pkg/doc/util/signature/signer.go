@@ -7,6 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package signature
 
 import (
+	"crypto/ecdsa"
 	"crypto/ed25519"
 	"errors"
 
@@ -71,4 +72,9 @@ func NewSigner(keyType kmsapi.KeyType) (Signer, error) {
 // GetEd25519Signer returns Ed25519 Signer with predefined private and public keys.
 func GetEd25519Signer(privKey ed25519.PrivateKey, pubKey ed25519.PublicKey) Signer {
 	return signer.GetEd25519Signer(privKey, pubKey)
+}
+
+// GetECDSASecp256k1Signer returns ECDSASecp256k1 Signer with predefined private key.
+func GetECDSASecp256k1Signer(privkey *ecdsa.PrivateKey) Signer {
+	return signer.GetECDSASecp256k1Signer(privkey)
 }
